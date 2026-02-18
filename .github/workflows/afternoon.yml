@@ -2,7 +2,7 @@ name: Afternoon Predictions
 
 on:
   schedule:
-    - cron: '50 3 * * 0,6'  # 12:50 JST (Sat/Sun)
+    - cron: '50 3 * * *'  # 12:50 JST (毎日)
   workflow_dispatch:
 
 env:

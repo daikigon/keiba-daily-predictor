@@ -2,7 +2,7 @@ name: Morning Predictions
 
 on:
   schedule:
-    - cron: '50 0 * * 0,6'  # 09:50 JST (Sat/Sun)
+    - cron: '50 0 * * *'  # 09:50 JST (毎日)
   workflow_dispatch:
 
 env:

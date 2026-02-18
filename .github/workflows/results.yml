@@ -2,7 +2,7 @@ name: Collect Results
 
 on:
   schedule:
-    - cron: '30 8 * * 0,6'  # 17:30 JST (Sat/Sun)
+    - cron: '30 8 * * *'  # 17:30 JST (毎日)
   workflow_dispatch:
 
 env:
