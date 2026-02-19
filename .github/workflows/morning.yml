@@ -2,7 +2,7 @@ name: Morning Predictions
 
 on:
   schedule:
-    - cron: '30 0 * * *'  # 09:30 JST (毎日)
+    - cron: '0 0 * * *'  # 09:00 JST (毎日) — GHA遅延を考慮して早めに設定
   workflow_dispatch:
 
 env:
@@ -13,7 +13,7 @@ env:
 jobs:
   predict:
     runs-on: ubuntu-latest
-    timeout-minutes: 200
+    timeout-minutes: 360
 
     steps:
       - name: Checkout private repo
@@ -35,4 +35,4 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run morning predictions
-        run: python -m scripts.daily_predict watch --window morning
+        run: python -m scripts.daily_predict watch --window morning --model-name latest
