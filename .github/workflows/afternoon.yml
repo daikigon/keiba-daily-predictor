@@ -2,7 +2,7 @@ name: Afternoon Predictions
 
 on:
   schedule:
-    - cron: '50 3 * * *'  # 12:50 JST (毎日)
+    - cron: '0 4 * * *'  # 13:00 JST (毎日) — GHA遅延を考慮して早めに設定
   workflow_dispatch:
 
 env:
@@ -13,7 +13,7 @@ env:
 jobs:
   predict:
     runs-on: ubuntu-latest
-    timeout-minutes: 230
+    timeout-minutes: 330
 
     steps:
       - name: Checkout private repo
@@ -35,4 +35,4 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run afternoon predictions
-        run: python -m scripts.daily_predict watch --window afternoon
+        run: python -m scripts.daily_predict watch --window afternoon --model-name latest
