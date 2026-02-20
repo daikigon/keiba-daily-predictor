@@ -2,7 +2,7 @@ name: Morning Predictions
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 09:00 JST (毎日) — GHA遅延を考慮して早めに設定
+    - cron: '30 23 * * *'  # 08:30 JST (毎日) — GHA遅延を考慮して30分前倒し
   workflow_dispatch:
 
 env:
@@ -35,4 +35,9 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run morning predictions
-        run: python -m scripts.daily_predict watch --window morning --model-name latest
+        run: |
+          python -m scripts.daily_predict watch \
+            --window morning \
+            --model-name latest \
+            --selection-mode value \
+            --alpha-threshold 0.12

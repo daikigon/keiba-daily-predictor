@@ -35,4 +35,9 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run afternoon predictions
-        run: python -m scripts.daily_predict watch --window afternoon --model-name latest
+        run: |
+          python -m scripts.daily_predict watch \
+            --window afternoon \
+            --model-name latest \
+            --selection-mode value \
+            --alpha-threshold 0.12
